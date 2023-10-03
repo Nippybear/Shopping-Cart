@@ -39,3 +39,12 @@ stages:
            PathtoPublish: '$(Build.ArtifactStagingDirectory)'
            ArtifactName: 'artifact_yaml'
            publishLocation: 'Container'
+           
+  - stage: DockerBuild
+    jobs:
+      - job: 'Dockerbuild'
+        steps:
+        - task: Bash@3
+          inputs:
+           targetType: 'inline'
+           script: 'docker build -t dmedina1989/shoppingYAML:latest -f docker/Dockerfile .'
