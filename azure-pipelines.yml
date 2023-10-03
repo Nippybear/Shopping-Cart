@@ -27,3 +27,15 @@ stages:
            mavenAuthenticateFeed: false
            effectivePomSkip: false
            sonarQubeRunAnalysis: false
+
+        - task: CopyFiles@2
+          inputs:
+           SourceFolder: '$(system.defaultworkingdirectory)'
+           Contents: '**/*.jar'
+           TargetFolder: '$(build.artifactstagingdirectory)'
+           
+        - task: PublishBuildArtifacts@1
+          inputs:
+           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+           ArtifactName: 'artifact_yaml'
+           publishLocation: 'Container'
