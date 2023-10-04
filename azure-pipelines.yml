@@ -2,7 +2,7 @@ trigger:
 - none
 
 pool:
-  vmImage: windows-latest
+  name: AgentPool-VagrantVM
 
 stages:
   - stage: checkoutcode
@@ -14,8 +14,7 @@ stages:
   - stage: MavenBuild
     jobs:
       - job: 'MavenBuild'
-        steps:
-        
+        steps: 
         - task: Maven@4
           inputs:
            mavenPomFile: 'pom.xml'
@@ -40,11 +39,4 @@ stages:
            ArtifactName: 'artifact_yaml'
            publishLocation: 'Container'
            
-  - stage: DockerBuild
-    jobs:
-      - job: 'Dockerbuild'
-        steps:
-        - task: Bash@3
-          inputs:
-           targetType: 'inline'
-           script: 'docker build -t dmedina1989/shopping_yaml:latest -f docker/Dockerfile .'
+ 
