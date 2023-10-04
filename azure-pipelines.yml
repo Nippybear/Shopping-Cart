@@ -39,4 +39,11 @@ stages:
            ArtifactName: 'artifact_yaml'
            publishLocation: 'Container'
            
+        - task: Bash@3
+          inputs:
+           targetType: 'inline'
+           script: |
+            docker login -u dmedina1989 -p $(github.pass)
+            docker build -t shopping1.0:latest -f docker/Dockerfile .
+           
  
