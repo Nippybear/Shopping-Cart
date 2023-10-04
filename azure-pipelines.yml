@@ -2,7 +2,7 @@ trigger:
 - none
 
 pool:
-  name: AgentPool-VagrantVM
+  name: My-Agent
 
 stages:
   - stage: checkoutcode
